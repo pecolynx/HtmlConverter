@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<brushlist>
+  <brush ext="xml" type="xml" />
+  <brush ext="cs" type="csharp" />
+  <brush ext="sln" type="plain" />
+  <brush ext="csproj" type="xml" />
+  <brush ext="java" type="java" />
+  <brush ext="jsp" type="xml" />
+  <brush ext="html" type="xml" />
+</brushlist>
