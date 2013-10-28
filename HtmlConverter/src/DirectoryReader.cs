@@ -73,7 +73,7 @@ namespace HtmlConverter
                 }
                 else
                 {
-                    Console.WriteLine("not contains : " + dirPath);
+                    //Console.WriteLine("not contains : " + dirPath);
                 }
             }
 

@@ -12,23 +12,44 @@ namespace HtmlConverter
     {
         static void Main(string[] args)
         {
-            if (args.Length != 3)
+            if (args.Length != 2 && args.Length != 3)
             {
                 Console.WriteLine("Invalid argument.");
                 return;
             }
 
+            var asm = Assembly.GetEntryAssembly();
+            var exeDirPath = Path.GetDirectoryName(asm.Location);
+
             var srcDirPath = args[0];
             var dstDirPath = args[1];
-            var brushFilePath = args[2];
+
+
+            String brushFilePath;
+            if (args.Length == 2)
+            {
+                brushFilePath = Path.Combine(exeDirPath, "brushlist.xml");
+            }
+            else
+            {
+                brushFilePath = args[2];
+            }
+
+            Console.WriteLine("SourceDirectory : " + srcDirPath);
+            Console.WriteLine("DestinationDirectory : " + dstDirPath);
+            Console.WriteLine("BrushListFile : " + brushFilePath);
 
             if (!Directory.Exists(srcDirPath))
             {
                 Console.WriteLine("Source directory not exists.");
+                return;
             }
 
-            var asm = Assembly.GetEntryAssembly();
-            var exeDirPath = Path.GetDirectoryName(asm.Location);
+            if (!File.Exists(brushFilePath))
+            {
+                Console.WriteLine("BrushList file not exists.");
+                return;
+            }
 
             var brushList = XElement.Load(new StreamReader(brushFilePath));
 
@@ -129,6 +150,8 @@ namespace HtmlConverter
 
             // right html copy
             File.Copy(Path.Combine(exeDirPath, "template\\right.html"), Path.Combine(dstDirPath, "right.html"), true);
+
+            Console.WriteLine("Done.");
         }
 
         public static int CountChar(string s, char c)
