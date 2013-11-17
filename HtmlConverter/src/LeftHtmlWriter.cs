@@ -46,7 +46,7 @@ namespace HtmlConverter
             node.SubDirectoryList.ForEach(x => sb.Append(Output(x, depth + 3)));
             node.FileList.ForEach(x =>
             {
-                sb.Append(indent4 + "<li name=\"" + x.Path + ".html" + "\">\r\n");
+                sb.Append(indent4 + "<li name=\"" + x.Path.Replace('\\', '/') + ".html" + "\">\r\n");
                 sb.Append(indent5 + "<a href=\"#\">" + x.Name + "</a>\r\n");
                 sb.Append(indent4 + "</li>\r\n");
             });
